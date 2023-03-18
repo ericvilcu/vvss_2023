@@ -10,8 +10,8 @@ import java.util.List;
 
 public class PizzaService {
 
-    private MenuRepository menuRepo;
-    private PaymentRepository payRepo;
+    private final MenuRepository menuRepo;
+    private final PaymentRepository payRepo;
 
     public PizzaService(MenuRepository menuRepo, PaymentRepository payRepo){
         this.menuRepo=menuRepo;

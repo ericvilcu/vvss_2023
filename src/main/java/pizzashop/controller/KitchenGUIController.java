@@ -6,40 +6,29 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Calendar;
 
 public class KitchenGUIController {
+    private static final Logger log = LogManager.getLogger(KitchenGUIController.class);
     @FXML
-    private ListView kitchenOrdersList;
+    private ListView<String> kitchenOrdersList;
     @FXML
     public Button cook;
     @FXML
     public Button ready;
 
-    public static  ObservableList<String> order = FXCollections.observableArrayList();
+    protected static  ObservableList<String> order = FXCollections.observableArrayList();
     private Object selectedOrder;
     private Calendar now = Calendar.getInstance();
-    private String extractedTableNumberString = new String();
+    private String extractedTableNumberString;
     private int extractedTableNumberInteger;
     //thread for adding data to kitchenOrderList
-    public  Thread addOrders = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (true) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        kitchenOrdersList.setItems(order);
-                        }
-                });
-                try {
-                    Thread.sleep(100);
-                  } catch (InterruptedException ex) {
-                    break;
-                }
-            }
-        }
-    });
+    protected  Thread addOrders = new Thread(()->
+            Platform.runLater(() -> kitchenOrdersList.setItems(order))
+    );
 
     public void initialize() {
         //starting thread for adding data to kitchenOrderList
@@ -59,9 +48,9 @@ public class KitchenGUIController {
             kitchenOrdersList.getItems().remove(selectedOrder);
             extractedTableNumberString = selectedOrder.toString().subSequence(5, 6).toString();
             extractedTableNumberInteger = Integer.valueOf(extractedTableNumberString);
-            System.out.println("--------------------------");
-            System.out.println("Table " + extractedTableNumberInteger +" ready at: " + now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE));
-            System.out.println("--------------------------");
+            log.info("--------------------------");
+            log.info("Table " + extractedTableNumberInteger +" ready at: " + now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE));
+            log.info("--------------------------");
         });
     }
 }

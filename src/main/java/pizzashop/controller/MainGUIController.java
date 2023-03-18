@@ -19,41 +19,23 @@ import javafx.scene.text.FontWeight;
 import pizzashop.gui.OrdersGUI;
 import pizzashop.service.PizzaService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javafx.scene.paint.Color.DARKBLUE;
 
 
 public class MainGUIController  {
     @FXML
-    private Button table1;
-    @FXML
-    private Button table2;
-    @FXML
-    private Button table3;
-    @FXML
-    private Button table4;
-    @FXML
-    private Button table5;
-    @FXML
-    private Button table6;
-    @FXML
-    private Button table7;
-    @FXML
-    private Button table8;
+    public VBox buttons;
+    private List<Button> openTableButtons = new ArrayList<>();
     @FXML
     private MenuItem help;
 
-    OrdersGUI table1Orders = new OrdersGUI();
-    OrdersGUI  table2Orders = new OrdersGUI();
-    OrdersGUI  table3Orders = new OrdersGUI();
-    OrdersGUI  table4Orders = new OrdersGUI();
-    OrdersGUI  table5Orders = new OrdersGUI();
-    OrdersGUI  table6Orders = new OrdersGUI();
-    OrdersGUI  table7Orders = new OrdersGUI();
-    OrdersGUI  table8Orders = new OrdersGUI();
+    List<OrdersGUI> orders = new ArrayList<>();
 
     PizzaService service;
 
-    public MainGUIController(){}
 
     public void setService(PizzaService service){
         this.service=service;
@@ -61,43 +43,25 @@ public class MainGUIController  {
     }
 
     private void tableHandlers(){
-        table1.setOnAction(event -> {
-            table1Orders.setTableNumber(1);
-            table1Orders.displayOrdersForm(service);
-        });
-        table2.setOnAction(event -> {
-            table2Orders.setTableNumber(2);
-            table2Orders.displayOrdersForm(service);
-        });
-        table3.setOnAction(event -> {
-            table3Orders.setTableNumber(3);
-            table3Orders.displayOrdersForm(service);
-        });
-        table4.setOnAction(event -> {
-            table4Orders.setTableNumber(4);
-            table4Orders.displayOrdersForm(service);
-        });
-        table5.setOnAction(event -> {
-            table5Orders.setTableNumber(5);
-            table5Orders.displayOrdersForm(service);
-        });
-        table6.setOnAction(event -> {
-            table6Orders.setTableNumber(6);
-            table6Orders.displayOrdersForm(service);
-        });
-        table7.setOnAction(event -> {
-            table7Orders.setTableNumber(7);
-            table7Orders.displayOrdersForm(service);
-        });
-        table8.setOnAction(event -> {
-            table8Orders.setTableNumber(8);
-            table8Orders.displayOrdersForm(service);
-        });
 
+        for (int i = 0; i < openTableButtons.size(); i++) {
+            final int idx=i;
+            openTableButtons.get(i).setOnAction(event->{
+                OrdersGUI tableGui = new OrdersGUI();
+                tableGui.setTableNumber(idx);
+                tableGui.displayOrdersForm(service);
+                orders.add(tableGui);
+            });
+        }
     }
 
 
     public void initialize(){
+
+        for(javafx.scene.Node button:buttons.getChildren()) {
+            Button b=(Button)button;
+            openTableButtons.add(b);
+        }
 
         help.setOnAction((ActionEvent event) -> {
             Stage stage = new Stage();

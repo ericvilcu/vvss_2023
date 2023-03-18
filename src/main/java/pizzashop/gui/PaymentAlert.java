@@ -1,12 +1,17 @@
-package pizzashop.service;
+package pizzashop.gui;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pizzashop.model.PaymentType;
+import pizzashop.service.PaymentOperation;
+import pizzashop.service.PizzaService;
 
 import java.util.Optional;
 
 public class PaymentAlert implements PaymentOperation {
+    private static final Logger log = LogManager.getLogger(PaymentAlert.class);
     private PizzaService service;
 
     public PaymentAlert(PizzaService service){
@@ -15,23 +20,23 @@ public class PaymentAlert implements PaymentOperation {
 
     @Override
     public void cardPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Paying by card...");
-        System.out.println("Please insert your card!");
-        System.out.println("--------------------------");
+        log.info("--------------------------");
+        log.info("Paying by card...");
+        log.info("Please insert your card!");
+        log.info("--------------------------");
     }
     @Override
     public void cashPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Paying cash...");
-        System.out.println("Please show the cash...!");
-        System.out.println("--------------------------");
+        log.info("--------------------------");
+        log.info("Paying cash...");
+        log.info("Please show the cash...!");
+        log.info("--------------------------");
     }
     @Override
     public void cancelPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Payment choice needed...");
-        System.out.println("--------------------------");
+        log.info("--------------------------");
+        log.info("Payment choice needed...");
+        log.info("--------------------------");
     }
       public void showPaymentAlert(int tableNumber, double totalAmount ) {
         Alert paymentAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -43,14 +48,12 @@ public class PaymentAlert implements PaymentOperation {
         ButtonType cancel = new ButtonType("Cancel");
         paymentAlert.getButtonTypes().setAll(cardPayment, cashPayment, cancel);
         Optional<ButtonType> result = paymentAlert.showAndWait();
-        if (result.get() == cardPayment) {
+        if (result.isPresent() && result.get() == cardPayment) {
             cardPayment();
             service.addPayment(tableNumber, PaymentType.Card,totalAmount);
-        } else if (result.get() == cashPayment) {
+        } else if (result.isPresent() && result.get() == cashPayment) {
             cashPayment();
             service.addPayment(tableNumber, PaymentType.Cash,totalAmount);
-        } else if (result.get() == cancel) {
-             cancelPayment();
         } else {
             cancelPayment();
         }

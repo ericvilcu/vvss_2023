@@ -23,17 +23,16 @@
         </MenuBar>
     </children>
 
-    <VBox  alignment="CENTER" spacing="10" style="-fx-padding: 50 0 0 0;">
-    <children>
-        <Button fx:id="table1" minWidth="80" text="Table1" />
-        <Button fx:id="table2" minWidth="80" text="Table2" />
-        <Button fx:id="table3" minWidth="80" text="Table3" />
-        <Button fx:id="table4" minWidth="80" text="Table4" />
-        <Button fx:id="table5" minWidth="80" text="Table5" />
-        <Button fx:id="table6" minWidth="80" text="Table6" />
-        <Button fx:id="table7" minWidth="80" text="Table7" />
-        <Button fx:id="table8" minWidth="80" text="Table8" />
-    </children>
-
-</VBox>
+    <VBox  alignment="CENTER" spacing="10" style="-fx-padding: 50 0 0 0;" fx:id="buttons">
+        <children>
+            <Button fx:id="table1" minWidth="80" text="Table1" />
+            <Button fx:id="table2" minWidth="80" text="Table2" />
+            <Button fx:id="table3" minWidth="80" text="Table3" />
+            <Button fx:id="table4" minWidth="80" text="Table4" />
+            <Button fx:id="table5" minWidth="80" text="Table5" />
+            <Button fx:id="table6" minWidth="80" text="Table6" />
+            <Button fx:id="table7" minWidth="80" text="Table7" />
+            <Button fx:id="table8" minWidth="80" text="Table8" />
+        </children>
+    </VBox>
 </VBox>
