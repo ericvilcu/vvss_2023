@@ -5,12 +5,11 @@ import javafx.scene.control.ButtonType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pizzashop.model.PaymentType;
-import pizzashop.service.PaymentOperation;
 import pizzashop.service.PizzaService;
 
 import java.util.Optional;
 
-public class PaymentAlert implements PaymentOperation {
+public class PaymentAlert {
     private static final Logger log = LogManager.getLogger(PaymentAlert.class);
     private PizzaService service;
 
@@ -18,21 +17,20 @@ public class PaymentAlert implements PaymentOperation {
         this.service=service;
     }
 
-    @Override
     public void cardPayment() {
         log.info("--------------------------");
         log.info("Paying by card...");
         log.info("Please insert your card!");
         log.info("--------------------------");
     }
-    @Override
+    
     public void cashPayment() {
         log.info("--------------------------");
         log.info("Paying cash...");
         log.info("Please show the cash...!");
         log.info("--------------------------");
     }
-    @Override
+    
     public void cancelPayment() {
         log.info("--------------------------");
         log.info("Payment choice needed...");
