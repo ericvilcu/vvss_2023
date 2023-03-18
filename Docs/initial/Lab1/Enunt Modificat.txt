@@ -1,0 +1,14 @@
+Aplicatia va rula pe windows/linux/macos permite plasarea si onorarea comenzilor de pizza dintr-un restaurant cu 8 mese, precum si plata
+(simulata) prin card sau cash. Informatiile referitoare la meniu sunt preluate dintr-un fisier text cu structura:
+<tip_pizza>, <pret>. La utilizarea aplicatiei se va permite:
+- Plasarea unei comenzi noi de catre chelner, precizand tipul de pizza din meniu si cantitatea comandata. O comanda poate
+sa contina mai multe tipuri de pizza.
+- Comanda este preluata de maestrul pizzar care o va pregati si va notifica chelnerul atunci cand
+una sau mai multe pizza din comanda respectiva poate fi servita.
+- Chelnerul serveste pizza si incaseaza plata de la client. Clientul poate realiza plata cu cardul sau cash.
+F01. Pentru fiecare plata realizata se retin intr-un fisier urmatoarele detalii: masa, tipul platii (cash sau
+card) si valoarea achitata.
+-. O masa poate fi eliberata la cerere, doar dupa achitarea comenzii.
+- Bucataria unde se alfa maestrul pizzar se poate inchide doar daca nu mai exista clienti.
+- Restaurantul se poate inchide doar daca nu sunt clienti si bucataria este inchisa.
+F02. La inchiderea restaurantului se afiseaza totalul incasarilor realizate intr-un interval de timp specifcat de utlizator, pentru fiecare tip de plata.
