@@ -84,7 +84,7 @@ class PaymentRepositoryTest {
 
     @RepeatedTest(3)
     @Tag("BVA")
-    void BVA_valid_1(RepetitionInfo repInfo, TestInfo testInfo){
+    void BVA_valid_1(RepetitionInfo repInfo){
         assertDoesNotThrow(()->r.add(new Payment(repInfo.getCurrentRepetition()-1,PaymentType.Card,10)));
     }
 
@@ -109,7 +109,7 @@ class PaymentRepositoryTest {
     @Test
     @Disabled
     void aisjduhaoips(){
-        assert false;
+        fail();
     }
 
 
