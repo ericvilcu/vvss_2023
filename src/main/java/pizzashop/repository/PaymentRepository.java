@@ -59,6 +59,7 @@ public class PaymentRepository {
     }
 
     public void add(Payment payment){
+        if(payment.isInvalid()) throw new RuntimeException();
         paymentList.add(payment);
         writeAll();
     }

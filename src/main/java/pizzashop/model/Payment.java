@@ -40,4 +40,11 @@ public class Payment {
     public String toString() {
         return tableNumber + ","+type +"," + amount;
     }
+
+    public boolean isInvalid() {
+        if(getAmount()<0.0) return true;
+        if(getTableNumber()<0) return true;
+        if(getType()!=PaymentType.Card || getType()!=PaymentType.Card) return true;
+        return false;
+    }
 }
