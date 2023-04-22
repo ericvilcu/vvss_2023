@@ -27,13 +27,17 @@ public class PizzaService {
         payRepo.add(payment);
     }
 
+
     public double getTotalAmount(PaymentType type){
         double total=0.0f;
         List<Payment> l=getPayments();
-        if ((l==null) ||(l.size()==0)) return total;
-        for (Payment p:l){
-            if (p.getType().equals(type))
-                total+=p.getAmount();
+        if (l==null)
+            return  total;
+        if(l.size()==0)
+            return total;
+        for (int index=0; index < l.size(); index++){
+            if (l.get(index).getType().equals(type))
+                total+=l.get(index).getAmount();
         }
         return total;
     }
