@@ -86,6 +86,8 @@ class PaymentRepositoryTest {
     @Tag("BVA")
     void BVA_valid_1(RepetitionInfo repInfo){
         assertDoesNotThrow(()->r.add(new Payment(repInfo.getCurrentRepetition()-1,PaymentType.Card,10)));
+        assertEquals(1,r.getAll().size());
+        assertEquals(new Payment(repInfo.getCurrentRepetition()-1,PaymentType.Card,10),r.getAll().get(0));
     }
 
     @ParameterizedTest
@@ -117,6 +119,8 @@ class PaymentRepositoryTest {
     @Tag("ECP")
     void ECP_valid_1(){
         assertDoesNotThrow(()->r.add(new Payment(56,PaymentType.Card,41)));
+        assertEquals(1,r.getAll().size());
+        assertEquals(new Payment(56,PaymentType.Card,41),r.getAll().get(0));
     }
     @Test
     @Tag("ECP")
