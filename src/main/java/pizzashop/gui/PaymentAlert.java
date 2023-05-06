@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.service.PizzaService;
 
@@ -48,10 +49,10 @@ public class PaymentAlert {
         Optional<ButtonType> result = paymentAlert.showAndWait();
         if (result.isPresent() && result.get() == cardPayment) {
             cardPayment();
-            service.addPayment(tableNumber, PaymentType.Card,totalAmount);
+            service.addPayment(new Payment(tableNumber, PaymentType.Card,totalAmount));
         } else if (result.isPresent() && result.get() == cashPayment) {
             cashPayment();
-            service.addPayment(tableNumber, PaymentType.Cash,totalAmount);
+            service.addPayment(new Payment(tableNumber, PaymentType.Cash,totalAmount));
         } else {
             cancelPayment();
         }

@@ -3,6 +3,7 @@ package pizzashop.repository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mockito;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 
@@ -131,5 +132,13 @@ class PaymentRepositoryTest {
     @Tag("ECP")
     void ECP_invalid_2(){
         assertThrows(RuntimeException.class,()-> r.add(new Payment(-9999,PaymentType.Cash,-9999)));
+    }
+
+
+    @Test
+    @Tag("MOCK")
+    void mock(){
+        Payment p=Mockito.mock(Payment.class);
+
     }
 }
