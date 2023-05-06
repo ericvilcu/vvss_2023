@@ -164,6 +164,7 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.0</version>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <source>9</source>
