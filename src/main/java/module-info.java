@@ -5,10 +5,14 @@ module pizzashop {
     requires java.desktop;
     requires org.apache.logging.log4j;
 
-    opens pizzashop.model to javafx.base;
+    //opens pizzashop.model to javafx.base;
     exports pizzashop.model;
     opens pizzashop to javafx.fxml;
     exports pizzashop;
     opens pizzashop.controller to javafx.fxml;
     exports pizzashop.controller;
+
+    opens pizzashop.model;
+    opens pizzashop.service;
+    opens pizzashop.repository;
 }

@@ -16,9 +16,14 @@ class PaymentRepositoryTest {
     private static final String path="data/test.txt";
     PaymentRepository r;
     @BeforeEach
-    void setUp() throws IOException {
-        assertTrue(new File(path).createNewFile(),"The file was already there");
-        r=new PaymentRepository(path);
+    void setUp() {
+        try{
+            assertTrue(new File(path).createNewFile(),"The file was already there");
+            r=new PaymentRepository(path);
+        }
+        catch (Exception e){
+            fail(e);
+        }
     }
 
     @AfterEach

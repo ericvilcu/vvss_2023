@@ -19,10 +19,15 @@ public class ServiceRepoIntegrationTest {
     PizzaService service;
 
     @BeforeEach
-    void setUp() throws IOException {
-        assertTrue(new File(path).createNewFile(),"The file was already there");
-        repository=new PaymentRepository(path);
-        service = new PizzaService(null,repository);
+    void setUp() {
+        try{
+            assertTrue(new File(path).createNewFile(),"The file was already there");
+            repository=new PaymentRepository(path);
+            service = new PizzaService(null,repository);
+        }
+        catch (Exception e){
+            fail(e);
+        }
     }
 
     @AfterEach

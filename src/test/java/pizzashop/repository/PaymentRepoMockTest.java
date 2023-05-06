@@ -36,11 +36,16 @@ public class PaymentRepoMockTest {
     }
 
     @BeforeEach
-    void setUp() throws IOException {
-        MockitoAnnotations.initMocks(this);
+    void setUp() {
+        try {
+            MockitoAnnotations.initMocks(this);
 
-        assertTrue(new File(path).createNewFile(),"The file was already there");
-        paymentRepository=new PaymentRepository(path);
+            assertTrue(new File(path).createNewFile(), "The file was already there");
+            paymentRepository = new PaymentRepository(path);
+        }
+        catch (Exception e){
+            fail(e);
+        }
     }
 
     @AfterEach
